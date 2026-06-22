@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+ <head>
+  <script src="/_sdk/telemetry_sdk.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- ==========================================
+       [1] JUDUL HALAMAN WEBSITE
+       ========================================== -->
+  <title>PORTOFOLIO YUDYISTIRA</title>
+  
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght=700;900&amp;family=DM+Sans:wght=400;500;700&amp;display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  
+  <!-- ==========================================
+       [2] PENGATURAN TAMPILAN & DESAIN (CSS Gaya Modern)
+       ========================================== -->
+  <style>
+        body { font-family: 'DM Sans', sans-serif; cursor: none; }
+        .font-display { font-family: 'Playfair Display', serif; }
+        
+        /* Animasi Muncul Saat Scroll */
+        .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        
+        /* Efek Interaktif Kartu Modern */
+        .card-hover { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; }
+        .card-hover:hover { transform: translateY(-12px) scale(1.02); box-shadow: 0 20px 40px rgba(16, 185, 129, 0.2); border-color: rgba(16, 185, 129, 0.4); }
+        
+        .hero-section { min-height: 100vh; }
+        
+        /* Custom Kursor Bercahaya */
+        .custom-cursor { width: 20px; height: 20px; border: 2px solid #10b981; position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 9999; transition: width 0.2s, height 0.2s, background-color 0.2s; background-color: rgba(16, 185, 129, 0.1); border-radius: 50%; }
+        .custom-cursor-dot { width: 4px; height: 4px; background-color: #10b981; position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 9999; border-radius: 50%; }
+        .hover-active { width: 50px; height: 50px; background-color: rgba(6, 182, 212, 0.2); border-color: #06b6d4; }
+        
+        /* Animasi Ketik Slogan */
+        .typing-text::after { content: '|'; animation: blink 0.7s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* Background Gradasi Bergerak */
+        .bg-gradient-animate { background-size: 200% 200%; animation: gradientMove 8s ease infinite; }
+        @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+  </style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="/_sdk/resizing_sdk.js" type="text/javascript"></script>
+ </head>
+ 
+ <body data-template-id="__page-root" class="w-full bg-gray-950 text-white selection:bg-emerald-500 selection:text-black">
+  
+  <!-- Elemen Custom Kursor -->
+  <div class="custom-cursor hidden md:block" id="customCursor"></div>
+  <div class="custom-cursor-dot hidden md:block" id="customCursorDot"></div>
+
+  <!-- Progress Bar Di Atas Layar -->
+  <div class="fixed top-0 left-0 h-1 bg-gradient-to-r from-emerald-400 to-cyan-500 z-50 transition-all duration-100" id="progressBar" style="width: 0%"></div>
+  
+  <!-- ==========================================
+       [3] NAVIGASI BAR (Menu Bagian Atas)
+       ========================================== -->
+  <nav class="fixed top-0 w-full z-40 backdrop-blur-md bg-gray-950/80 border-b border-white/10 transition-all duration-300" id="navbar">
+   <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+    
+    <span data-template-id="nav-brand" class="canva-text font-display text-xl font-bold tracking-wider bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">YUDYISTIRA</span>
+    
+    <div class="hidden md:flex gap-8 navbar-links">
+     <a href="#profil" class="nav-link text-gray-400 hover:text-emerald-400 transition-colors duration-300 font-medium">Profil</a> 
+     <a href="#prestasi" class="nav-link text-gray-400 hover:text-emerald-400 transition-colors duration-300 font-medium">Prestasi</a> 
+     <a href="#sertifikat" class="nav-link text-gray-400 hover:text-emerald-400 transition-colors duration-300 font-medium">Sertifikat</a>
+    </div>
+   </div>
+  </nav>
+
+  <!-- ==========================================
+       [4] HERO SECTION (Bagian Utama Paling Atas)
+       ========================================== -->
+  <header class="hero-section relative flex items-center justify-center overflow-hidden">
+   
+   <!-- 📸 TEMPAT GAMBAR [A]: BACKGROUND UTAMA WEBSITE (Bisa diganti link gambar lain di dalam src) -->
+   <img data-template-id="hero-bg" 
+        src="https://r1.community.samsung.com/t5/image/serverpage/image-id/3851739i6CE73B026FA65DB7/image-size/large?v=v2&px=999" 
+        class="canva-image absolute inset-0 w-full h-full object-cover opacity-25 scale-105 transition-transform duration-[10s] hover:scale-100" loading="lazy" alt="Hero Background">
+   
+   <div class="absolute inset-0 bg-gradient-to-b from-gray-950/20 via-gray-950/60 to-gray-950"></div>
+   
+   <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+   <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+   
+   <div class="relative z-10 text-center px-6">
+    <div class="mb-8 inline-block rounded-full p-1 bg-gradient-to-br from-emerald-400 to-cyan-500 shadow-lg shadow-emerald-500/20 hover:rotate-6 transition-transform duration-500">
+     
+     <!-- 📸 TEMPAT GAMBAR [B]: FOTO PROFIL WAJAH KAMU (Ganti foto-profil.jpg dengan file fotomu) -->
+     <img data-template-id="profile-photo" src="foto-profil.jpg" class="canva-image w-40 h-40 md:w-52 md:h-52 rounded-full object-cover border-4 border-gray-950" loading="lazy" alt="Foto Profil">
+    
+    </div>
+    
+    <h1 data-template-id="hero-name" class="canva-text font-display text-5xl md:text-7xl font-bold mb-4 tracking-tight">
+      <span class="bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">YUDYISTIRA</span>
+    </h1>
+    
+    <p data-template-id="hero-tagline" class="canva-text text-lg md:text-2xl text-emerald-400 font-medium max-w-xl mx-auto min-h-[32px]">
+      <span class="typing-text" id="typingElement"></span>
+    </p>
+
+    <div class="mt-10">
+      <a href="#profil" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 font-medium text-sm text-gray-950 shadow-lg shadow-emerald-500/20 hover:shadow-cyan-500/30 hover:scale-105 transition-all duration-300 button-hover-target">
+        Jelajahi Portofolio <i data-lucide="arrow-down" class="w-4 h-4"></i>
+      </a>
+    </div>
+   
+   </div>
+  </header>
+
+  <!-- ISI UTAMA WEBSITE -->
+  <main class="max-w-6xl mx-auto px-6 relative z-10">
+   
+   <!-- ==========================================
+        [5] SECTION: TENTANG SAYA / PROFIL
+        ========================================== -->
+   <section id="profil" class="py-24 fade-in">
+    <h2 data-template-id="profil-title" class="canva-text font-display text-3xl md:text-4xl font-bold mb-8 text-center flex items-center justify-center gap-3">
+      <i data-lucide="user" class="text-emerald-400"></i> Tentang Saya
+    </h2>
+    
+    <div data-template-id="profil-card" class="canva-card max-w-3xl mx-auto bg-gray-900/40 backdrop-blur-md rounded-2xl p-8 md:p-12 border border-white/5 shadow-xl relative group hover:border-emerald-500/30 transition-all duration-500">
+     <div class="absolute -inset-px bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+     <p data-template-id="profil-desc" class="canva-text text-lg leading-relaxed text-gray-300 text-center relative z-10">
+      "Halo! Saya seorang pelajar SMP yang selalu berkomitmen untuk memberikan yang terbaik. Berkat kedisiplinan, saya berhasil mempertahankan posisi sebagai juara kelas sekaligus aktif mengasah jiwa kepemimpinan di Gerakan Pramuka. Saat ini, saya fokus menyeimbangkan prestasi akademik dan non-akademik serta terus belajar menjadi pribadi yang mandiri dan siap diandalkan!"
+     </p>
+    </div>
+   </section>
+
+   <!-- ==========================================
+        [6] SECTION: PRESTASI
+        ========================================== -->
+   <section id="prestasi" class="py-24 fade-in">
+    <h2 data-template-id="prestasi-title" class="canva-text font-display text-3xl md:text-4xl font-bold mb-12 text-center flex items-center justify-center gap-3">
+      <i data-lucide="trophy" class="text-emerald-400"></i> Prestasi
+    </h2>
+    <div class="grid md:grid-cols-3 gap-8">
+     
+     <!-- KARTU PRESTASI 1 -->
+     <div data-template-id="achievement-1-card" class="canva-card bg-gray-900/40 backdrop-blur-md border border-white/5 rounded-2xl overflow-hidden card-hover group button-hover-target">
+      <div class="overflow-hidden h-48">
+        <!-- 📸 TEMPAT GAMBAR [C]: GAMBAR PRESTASI 1 (Ganti prestasi1.jpg) -->
+        <img data-template-id="achievement-1-img" src="prestasi1.jpg" class="canva-image w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" alt="Prestasi 1">
+      </div>
+      <div class="p-6">
+       <h3 data-template-id="achievement-1-title" class="canva-text font-bold text-lg mb-2 group-hover:text-emerald-400 transition-colors">Juara 1 Lomba Aplikasi</h3>
+       <p data-template-id="achievement-1-desc" class="canva-text text-sm text-gray-400 leading-relaxed">Penjelasan singkat mengenai kompetisi yang diikuti dan pencapaian hebat yang berhasil diraih.</p>
+      </div>
+     </div>
+
+     <!-- KARTU PRESTASI 2 -->
+     <div data-template-id="achievement-2-card" class="canva-card bg-gray-900/40 backdrop-blur-md border border-white/5 rounded-2xl overflow-hidden card-hover group button-hover-target">
+      <div class="overflow-hidden h-48">
+        <!-- 📸 TEMPAT GAMBAR [D]: GAMBAR PRESTASI 2 (Ganti prestasi2.jpg) -->
+        <img data-template-id="achievement-2-img" src="prestasi2.jpg" class="canva-image w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" alt="Prestasi 2">
+      </div>
+      <div class="p-6">
+       <h3 data-template-id="achievement-2-title" class="canva-text font-bold text-lg mb-2 group-hover:text-emerald-400 transition-colors">Pembicara Seminar IT</h3>
+       <p data-template-id="achievement-2-desc" class="canva-text text-sm text-gray-400 leading-relaxed">Penjelasan singkat tentang acara seminar skala nasional atau lokal yang Anda isi dengan percaya diri.</p>
+      </div>
+     </div>
+
+     <!-- KARTU PRESTASI 3 -->
+     <div data-template-id="achievement-3-card" class="canva-card bg-gray-900/40 backdrop-blur-md border border-white/5 rounded-2xl overflow-hidden card-hover group button-hover-target">
+      <div class="overflow-hidden h-48">
+        <!-- 📸 TEMPAT GAMBAR [E]: GAMBAR PRESTASI 3 (Ganti prestasi3.jpg) -->
+        <img data-template-id="achievement-3-img" src="prestasi3.jpg" class="canva-image w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" alt="Prestasi 3">
+      </div>
+      <div class="p-6">
+       <h3 data-template-id="achievement-3-title" class="canva-text font-bold text-lg mb-2 group-hover:text-emerald-400 transition-colors">Pendanaan Proyek 2026</h3>
+       <p data-template-id="achievement-3-desc" class="canva-text text-sm text-gray-400 leading-relaxed">Penjelasan singkat tentang proyek inovasi atau bisnis kreatif yang berhasil Anda kembangkan.</p>
+      </div>
+     </div>
+
+    </div>
+   </section>
+
+   <!-- ==========================================
+        [7] SECTION: SERTIFIKAT
+        ========================================== -->
+   <section id="sertifikat" class="py-24 fade-in">
+    <h2 data-template-id="sertifikat-title" class="canva-text font-display text-3xl md:text-4xl font-bold mb-12 text-center flex items-center justify-center gap-3">
+      <i data-lucide="award" class="text-emerald-400"></i> Sertifikat
+    </h2>
+    <div class="grid md:grid-cols-3 gap-8">
+     
+     <!-- KARTU SERTIFIKAT 1 -->
+     <div data-template-id="cert-1-card" class="canva-card bg-gray-900/40 backdrop-blur-md border border-white/5 rounded-2xl overflow-hidden card-hover group button-hover-target">
+      <div class="overflow-hidden h-48">
+        <!-- 📸 TEMPAT GAMBAR [F]: GAMBAR SERTIFIKAT 1 (Ganti sertifikat1.jpg) -->
+        <img data-template-id="cert-1-img" src="sertifikat1.jpg" class="canva-image w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" alt="Sertifikat 1">
+      </div>
+      <div class="p-6">
+       <h3 data-template-id="cert-1-title" class="canva-text font-bold text-lg mb-2 group-hover:text-cyan-400 transition-colors">Sertifikasi Cloud Architect</h3>
+       <p data-template-id="cert-1-desc" class="canva-text text-sm text-gray-400">Kredensial resmi yang diterbitkan oleh lembaga teknologi global terkemuka seperti Google / AWS.</p>
+      </div>
+     </div>
+
+     <!-- KARTU SERTIFIKAT 2 -->
+     <div data-template-id="cert-2-card" class="canva-card bg-gray-900/40 backdrop-blur-md border border-white/5 rounded-2xl overflow-hidden card-hover group button-hover-target">
+      <div class="overflow-hidden h-48">
+        <!-- 📸 TEMPAT GAMBAR [G]: GAMBAR SERTIFIKAT 2 (Ganti sertifikat2.jpg) -->
+        <img data-template-id="cert-2-img" src="sertifikat2.jpg" class="canva-image w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" alt="Sertifikat 2">
+      </div>
+      <div class="p-6">
+       <h3 data-template-id="cert-2-title" class="canva-text font-bold text-lg mb-2 group-hover:text-cyan-400 transition-colors">Sertifikasi UI/UX Expert</h3>
+       <p data-template-id="cert-2-desc" class="canva-text text-sm text-gray-400">Bukti keahlian desain antarmuka pengguna yang diterbitkan oleh Coursera / Lembaga Desain.</p>
+      </div>
+     </div>
+
+     <!-- KARTU SERTIFIKAT 3 -->
+     <div data-template-id="cert-3-card" class="canva-card bg-gray-900/40 backdrop-blur-md border border-white/5 rounded-2xl overflow-hidden card-hover group button-hover-target">
+      <div class="overflow-hidden h-48">
+        <!-- 📸 TEMPAT GAMBAR [H]: GAMBAR SERTIFIKAT 3 (Ganti sertifikat3.jpg) -->
+        <img data-template-id="cert-3-img" src="sertifikat3.jpg" class="canva-image w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" alt="Sertifikat 3">
+      </div>
+      <div class="p-6">
+       <h3 data-template-id="cert-3-title" class="canva-text font-bold text-lg mb-2 group-hover:text-cyan-400 transition-colors">Sertifikasi Cyber Security</h3>
+       <p data-template-id="cert-3-desc" class="canva-text text-sm text-gray-400">Sertifikasi keamanan siber tingkat menengah resmi dari EC-Council / Cisco Academy.</p>
+      </div>
+     </div>
+
+    </div>
+   </section>
+
+  </main>
+
+  <!-- ==========================================
+       [8] FOOTER
+       ========================================== -->
+  <footer class="border-t border-white/5 py-12 text-center bg-gray-950/50 backdrop-blur-sm relative z-10">
+   <p data-template-id="footer-text" class="canva-text text-gray-500 text-sm tracking-wide">&copy; 2026 Yudyistira. Hak Cipta Dilindungi dengan Sepenuh Hati.</p>
+  </footer>
+
+  <!-- ==========================================
+       [9] SCRIPT JAVASCRIPT
+       ========================================== -->
+  <script src="/_sdk/editing_sdk.js"></script>
+  <script>
+        lucide.createIcons();
+
+        const cursor = document.getElementById('customCursor');
+        const cursorDot = document.getElementById('customCursorDot');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursorDot.style.left = e.clientX + 'px';
+            cursorDot.style.top = e.clientY + 'px';
+        });
+
+        document.querySelectorAll('.button-hover-target, a, button').forEach(item => {
+            item.addEventListener('mouseenter', () => { cursor.classList.add('hover-active'); });
+            item.addEventListener('mouseleave', () => { cursor.classList.remove('hover-active'); });
+        });
+
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+            
+            const navbar = document.getElementById('navbar');
+            if (winScroll > 50) {
+                navbar.classList.add('shadow-xl', 'bg-gray-950/95');
+            } else {
+                navbar.classList.remove('shadow-xl', 'bg-gray-950/80');
+            }
+        });
+
+        const phrases = ["SAYA MERUPAKAN SEORANG SISWA SMP", "PEMBELAJAR DAN INOVATOR MUDA", "AKTIF DI GERAKAN PRAMUKA"];
+        let phraseIdx = 0;
+        let charIdx = 0;
+        let isDeleting = false;
+        const typingSpeed = 100;
+        const erasingSpeed = 50;
+        const delayBetweenPhrases = 2000;
+        const typingElement = document.getElementById('typingElement');
+
+        function type() {
+            const currentPhrase = phrases[phraseIdx];
+            if (isDeleting) {
+                typingElement.textContent = currentPhrase.substring(0, charIdx - 1);
+                charIdx--;
+            } else {
+                typingElement.textContent = currentPhrase.substring(0, charIdx + 1);
+                charIdx++;
+            }
+
+            if (!isDeleting && charIdx === currentPhrase.length) {
+                isDeleting = true;
+                setTimeout(type, delayBetweenPhrases);
+            } else if (isDeleting && charIdx === 0) {
+                isDeleting = false;
+                phraseIdx = (phraseIdx + 1) % phrases.length;
+                setTimeout(type, 500);
+            } else {
+                setTimeout(type, isDeleting ? erasingSpeed : typingSpeed);
+            }
+        }
+        document.addEventListener("DOMContentLoaded", () => setTimeout(type, 1000));
+
+        const observerOptions = { threshold: 0.3 };
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    navLinks.forEach(link => {
+                        if(link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('text-emerald-400', 'border-b-2', 'border-emerald-400');
+                            link.classList.remove('text-gray-400');
+                        } else {
+                            link.classList.remove('text-emerald-400', 'border-b-2', 'border-emerald-400');
+                            link.classList.add('text-gray-400');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => sectionObserver.observe(section));
+
+        const appearObserver = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(el => appearObserver.observe(el));
+
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+  </script>
+ </body>
+</html>
